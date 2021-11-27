@@ -7,4 +7,8 @@
 
 code {
     font-family: monospace;
+    background: #595959;
+    border: 1px solid;
+    border-color: darkblue;
+    color: goldenrod;
 }
