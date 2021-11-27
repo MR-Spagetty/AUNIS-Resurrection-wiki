@@ -1,3 +1,21 @@
 #translate {
+    border: 2px solid #ddd;
+    border-color: aquamarine;
     justify-self: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 25%;
+}
+
+header {
+    color: darkslateblue;
+    font-size: 20px;
+}
+
+a {
+    color: darkolivegreen;
 }
