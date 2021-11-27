@@ -1,0 +1,10 @@
+.page {
+    justify-self: center;
+    width: 60%;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+code {
+    font-family: monospace;
+}
