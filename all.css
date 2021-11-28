@@ -1,10 +1,10 @@
 #page {
     justify-self: center;
-    width: calc(60% - 10px);
+    width: calc(50% - 10px);
     padding-left: 5px;
     padding-right: 5px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 25%;
+    margin-right: 25%;
     background-color: burlywood;
     border: 3px solid;
     color: black;
@@ -13,7 +13,7 @@
     margin-bottom: 20px;
 }
 
-p {
+.description {
     font-family: sans-serif;
 }
 
@@ -39,6 +39,7 @@ p {
 }
 
 .menu_item {
+    overflow: clip;
     font-family: sans-serif;
     border: 1px solid;
     width: max-content;
@@ -57,6 +58,10 @@ p {
     border-top: 0px solid;
     padding-top: 1px;
     color: wheat;
+}
+
+#submenu_items {
+    margin-top: -1px;
 }
 
 #submenu_items li {
@@ -95,4 +100,12 @@ code {
     border: 1px solid;
     border-color: darkblue;
     color: goldenrod;
+}
+
+@media only screen and (max-width: 1030px) {
+    #page {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 479px;
+    }
 }
