@@ -18,6 +18,7 @@
     justify-self: center;
     justify-content: center;
     /* width: 100%; */
+    margin-left: 5px;
 }
 
 #menubar a {
@@ -39,6 +40,8 @@
     border-color: darkgoldenrod;
     display: inline;
     float: left;
+    margin-top: -3px;
+    font-size: 12px;
 }
 
 #selected {
@@ -68,7 +71,7 @@
     padding-bottom: 2px;
     padding-right: 1px;
     border-color: darkgoldenrod;
-    width: 390px;
+    width: 440px;
     margin-left: -10px;
     margin-bottom: -13px;
     color: black;
