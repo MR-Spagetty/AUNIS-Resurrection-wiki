@@ -31,6 +31,7 @@
 }
 
 .menu_item {
+    font-family: sans-serif;
     border: 1px solid;
     width: max-content;
     padding-left: 2px;
@@ -51,6 +52,7 @@
 }
 
 #submenu_items li {
+    font-family: sans-serif;
     color: black;
     background-color: wheat;
     border: 1px solid;
@@ -71,7 +73,7 @@
     padding-bottom: 2px;
     padding-right: 1px;
     border-color: darkgoldenrod;
-    width: 471px;
+    width: 479px;
     margin-left: -10px;
     margin-bottom: -13px;
     color: black;
