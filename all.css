@@ -41,7 +41,7 @@
     display: inline;
     float: left;
     margin-top: -3px;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 #selected {
@@ -71,7 +71,7 @@
     padding-bottom: 2px;
     padding-right: 1px;
     border-color: darkgoldenrod;
-    width: 440px;
+    width: 471px;
     margin-left: -10px;
     margin-bottom: -13px;
     color: black;
