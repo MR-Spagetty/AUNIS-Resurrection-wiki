@@ -116,7 +116,7 @@ img {
 
 #submenu_items li {
     font-family: sans-serif;
-    color: black;
+    color: var(--text-color);
     background-color: var(--menu-background-color);
     border: 1px solid;
     border-color: var(--menu-border-color);
