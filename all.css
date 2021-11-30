@@ -38,6 +38,12 @@ h2 {
     color: var(--text-color);
 }
 
+img {
+    width: calc(100% - 2px);
+    border: 1px solid;
+    border-color: black;
+}
+
 #page {
     justify-self: center;
     width: calc(50% - 10px);
