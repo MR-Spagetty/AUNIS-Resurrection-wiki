@@ -1,19 +1,41 @@
+.light {
+    --text-color: black;
+    --background-color: white;
+    --page-color: burlywood;
+    --menu-background-color: wheat;
+    --menu-border-color: darkgoldenrod;
+    --code-background-color: #595959;
+    --code-border-color: darkblue;
+    --code-text-color: goldenrod;
+}
+
+.dark {
+    --text-color: #dcdbd9;
+    --background-color: black;
+    --page-color: #36393f;
+    --menu-background-color: #2f3136;
+    --menu-border-color: #202225;
+    --code-background-color: #2f3136;
+    --code-border-color: #202225;
+    --code-text-color: #b9bbbe;
+}
+
 body {
-    background: #ffffff;
+    background: var(--background-color);
 }
 
 p {
-    color: #000000;
+    color: var(--text-color);
 }
 
 li {
     font-family: sans-serif;
-    color: #000000;
+    color: var(--text-color);
 }
 
 h2 {
     font-family: serif;
-    color: #000000;
+    color: var(--text-color);
 }
 
 #page {
@@ -23,7 +45,7 @@ h2 {
     padding-right: 5px;
     margin-left: 25%;
     margin-right: 25%;
-    background-color: burlywood;
+    background-color: var(--page-color);
     border: 3px solid;
     color: black;
     float: none;
@@ -62,9 +84,9 @@ h2 {
     width: max-content;
     padding-left: 2px;
     padding-right: 2px;
-    background-color: wheat;
-    color: black;
-    border-color: darkgoldenrod;
+    background-color: var(--menu-background-color);
+    color: var(--text-color);
+    border-color: var(--menu-border-color);
     display: inline;
     float: left;
     margin-top: -3px;
@@ -74,7 +96,7 @@ h2 {
 #selected {
     border-top: 0px solid;
     padding-top: 1px;
-    color: wheat;
+    color: var(--menu-background-color);
 }
 
 #submenu_items {
@@ -85,9 +107,9 @@ h2 {
 #submenu_items li {
     font-family: sans-serif;
     color: black;
-    background-color: wheat;
+    background-color: var(--menu-background-color);
     border: 1px solid;
-    border-color: darkgoldenrod;
+    border-color: var(--menu-border-color);
     padding-left: 2px;
     padding-right: 2px;
     width: max-content;
@@ -97,12 +119,12 @@ h2 {
 
 #page_name {
     font-family: sans-serif;
-    background: wheat;
+    background: var(--menu-background-color);
     border: 1px solid;
     border-bottom: 0px solid;
     padding-bottom: 2px;
     padding-right: 1px;
-    border-color: darkgoldenrod;
+    border-color: var(--menu-border-color);
     width: 479px;
     margin-left: -10px;
     margin-bottom: -13px;
@@ -113,10 +135,10 @@ h2 {
 
 code {
     font-family: monospace;
-    background: #595959;
+    background: var(--code-background-color);
     border: 1px solid;
-    border-color: darkblue;
-    color: goldenrod;
+    border-color: var(--code-border-color);
+    color: var(--code-text-color);
 }
 
 @media only screen and (max-width: 1030px) {
@@ -127,46 +149,5 @@ code {
     }
     #menubar {
         margin-left: 0px
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #000000;
-    }
-    p {
-        color: #dcdbd9;
-    }
-    code {
-        background: #2f3136;
-        color: #b9bbbe;
-        border-color: #202225;
-    }
-    li {
-        color: #dcddd4;
-    }
-    h2 {
-        color: #dcddd4;
-    }
-    #page {
-        background-color: #36393f;
-    }
-    .menu_item {
-        color: #dcddd4;
-        background-color: #2f3136;
-        border-color: #202225;
-    }
-    #selected {
-        color: #2f3136;
-    }
-    #page_name {
-        color: #dcddd4;
-        background-color: #2f3136;
-        border-color: #202225;
-    }
-    #submenu_items li {
-        color: #dcddd4;
-        background-color: #2f3136;
-        border-color: #202225;
     }
 }

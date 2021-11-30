@@ -1,10 +1,22 @@
+.light {
+    --header-color: darkslateblue;
+    --border-color: aquamarine;
+    --link-color: darkolivegreen;
+}
+
+.dark {
+    --header-color: lightblue;
+    --border-color: darkcyan;
+    --link-color: deepskyblue;
+}
+
 p {
     font-family: serif;
 }
 
 #translate {
     border: 2px solid;
-    border-color: aquamarine;
+    border-color: var(--border-color);
     justify-self: center;
     justify-content: center;
     text-align: center;
@@ -16,15 +28,16 @@ p {
 }
 
 header {
-    color: darkslateblue;
+    color: var(--text-color);
     font-size: 20px;
 }
 
 a {
-    color: darkolivegreen;
+    color: var(--link-color);
 }
 
-@media (prefers-color-scheme: dark) {
+
+/* @media (prefers-color-scheme: dark) {
     #translate {
         border-color: darkcyan;
     }
@@ -34,4 +47,4 @@ a {
     a {
         color: deepskyblue;
     }
-}
+} */
