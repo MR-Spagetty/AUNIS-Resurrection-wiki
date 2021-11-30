@@ -20,6 +20,10 @@
     --code-text-color: #b9bbbe;
 }
 
+select {
+    float: right;
+}
+
 body {
     background: var(--background-color);
 }
