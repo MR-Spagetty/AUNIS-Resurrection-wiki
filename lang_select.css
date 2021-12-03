@@ -35,16 +35,3 @@ header {
 a {
     color: var(--link-color);
 }
-
-
-/* @media (prefers-color-scheme: dark) {
-    #translate {
-        border-color: darkcyan;
-    }
-    header {
-        color: lightblue
-    }
-    a {
-        color: deepskyblue;
-    }
-} */
