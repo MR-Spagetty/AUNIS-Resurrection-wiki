@@ -22,10 +22,6 @@
     --link-color: deepskyblue;
 }
 
-select {
-    float: right;
-}
-
 body {
     background: var(--background-color);
 }
