@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Materials</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="all.css">
+</head>
+<script type="text/javascript" src="theme_change.js"></script>
+
+<body class="dark">
+    <select id="theme-selector">
+        <option value="dark">Dark mode</option>
+        <option value="light">Light mode</option>
+    </select>
+    <div id="menubar">
+        <header id="page_name">
+            Integrations
+        </header>
+        <ul id="menu_items">
+            <a href="home_french.html">
+                <li class="menu_item">Menu</li>
+            </a>
+            <a href="stargates_french.html">
+                <li class="menu_item">Stargates</li>
+            </a>
+            <a href="dhds_french.html">
+                <li class="menu_item">DHDs</li>
+            </a>
+            <a href="irises_french.html">
+                <li class="menu_item">Iris</li>
+            </a>
+            <a href="transport_rings_french.html">
+                <li class="menu_item">Anneaux de transport</li>
+            </a>
+            <a href="materials_french.html">
+                <li class="menu_item">Matériaux</li>
+            </a>
+            <li id="selected" class="menu_item fixer">Integration</li>
+        </ul>
+        <br>
+        <ul id="submenu_items">
+            <a href="#oc">
+                <li>OC (open computers)</li>
+            </a>
+            <a href="#tic">
+                <li>Tinkers Construct</li>
+            </a>
+        </ul>
+    </div>
+    <br><br>
+    <div id="page">
+        <a id="oc">
+            <h2>OC (open computers)</h2>
+        </a>
+        <hr>
+        <p class="description">
+            <a href="https://www.curseforge.com/minecraft/mc-mods/opencomputers" class="external-link">OpenComputers</a>  est un mod en rapport avec les ordinateurs (obvious). Il ajoute des écrans modulaires de style sophistiqué, des PC, des serveurs et bien plus encore.
+            Le mod est compatible avec ces ordinateurs (comme la version 1.5)  et permet une composition du type SGC.
+        </p>
+        <h3>Programme de composition simple</h3>
+        <p class="description">
+            Regardez ceci <a href="https://gist.github.com/MrJake222/c4f8eab50dd91e8b133a8d51616d7eb7" class="external-link">gist</a>.
+        </p>
+        <h3>Méthode</h3>
+        <p class="description">
+            Liste des méthodes <b>TileEntities</b> disponibles
+        </p>
+        <h4>Stargate Base</h4>
+        <ul>
+            <li>
+                <code>getGateType()</code>
+                <br>Retourne:
+                <br><code>gateType</code> Peux être du type: <code>["MILKYWAY", "PEGASUS", "UNIVERSE"]</code>
+            </li>
+            <br>
+            <li>
+                <code>getGateStatus()</code>
+                <br>Retourne:
+                <br><code>gateStatus</code> Peux être du type <code>["not_merged", "open", "idle", "dialing", "dialing_computer", "unstable", "failing"]</code>
+                <br><code>openState</code> Quand <code>gateStatus</code> est <code>"open"</code> ce paramètre est <code>true</code> pour la Stargate d’entrée et <code>false</code> pour la Stargate de sortie.
+                <br><code>"dialing"</code> est lorsqu’il y a un délai après avoir appuyé sur le Symbole du DHD et le verrouillage du chevron.
+                <br><code>"dialing_computer"</code> est lorsque vous faites tourner la porte/l’anneau avec un ordinateur et qu’il redevient inactif une fois la rotation terminée.
+            </li>
+            <br>
+            <li>
+                <code>getEnergyRequiredToDial(symbols... or symbols:array</code> Obtient l’énergie requise pour composer la Stargate spécifiée. From AUNIS 1.9.6.
+                <br>Paramètres:
+                <br><code>symbols...</code> Symboles sous la forme de liste
+                <br><code>symbols:array</code> Symboles sous la forme de tableau.
+                <br><i>Le Point d'Origine est ajouté automatique s'il n'est pas présent</i>
+                <br>Retourne:
+                <br><code>"not_merged"</code> La Stargate n'est pas présente, ou
+                <br><code>"address_malformed"</code> (Pas de Stargate, l'adresse contient moins de 7 Symboles), ou
+                <br><code>energyMap</code> Map (alias array en Lua) avec 3 index: [<code>open</code>(coût d'ouverture, en RF),
+                <open>keepAlive</open>(coût de maintien, en RF/t), <code>canOpen</code>(si la puissance stockée est suffisante pour ouvrir le vortex, booléan)]
+            </li>
+            <br>
+            <li>
+                <code>engageSymbol(symbolName: string or symbolIndex: integer): table</code> Fait tourner l’anneau au symbole donné et l’engage/verrouille.
+                <br>Paramètres:
+                <br><code>symbolName</code> dans le <b>name</b> du <b>symbol</b> pour être encodé.
+                <br><code>symbolIndex</code> dans le <b>index</b> du <b>symbol</b> pour être encodé. regardez <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolMilkyWayEnum.java" class="external-link">Symboles de la Voie lactée</a>,
+                <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolPegasusEnum.java" class="external-link">Symboles de Pégase</a>, <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolUniverseEnum.java"
+                    class="external-link">Symboles d'Universe</a>.
+                <br>Retourne:
+                <br><code>status</code> Si nil, échec de la commande, sinon <code>"stargate_spin"</code>.
+                <br><code>"stargate_failure_*"</code> Nom de l’échec (occupé, plein, contient, not_merged).
+                <br><code>description</code> description de l’échec.
+            </li>
+            <br>
+            <li>
+                <code>engageGate()</code>
+                <br>Retourne:
+                <br><code>status</code> Si nil, échec de la commande, sinon <code>"stargate_engage"</code>.
+                <br><code>"stargate_failure_*"</code> Nom de l’échec (occupé, complet, contient not_merged).
+                <br><code>description</code> description de l’échec.
+                <br><code>gateState</code> State after <code>engageGate</code> commander. (BUSY [Porte source], NOT_ENOUGH_POWER, ADDRESS_MALFORMED [pourrait signifier que la Stargate cible est occupée]).
+            </li>
+            <br>
+            <li>
+                <code>disengageGate()</code> Tente de fermer la Stargate.
+                <br>Retourne:
+                <br><code>status</code> Si nil, échec de la commande, sinon <code>"stargate_disengage"</code>.
+                <br><code>"stargate_failure_*"</code> Nom de l’échec (occupé, complet, contient not_merged).
+                <br><code>description</code> description de l’échec.
+            </li>
+            <br>
+            <li>
+                <code>getEnergyStored()</code> Obtient la quantité d’énergie stockée dans la porte.
+                <br>Retourne:
+                <br><code>energy</code> Quantité d’énergie stockée, en RF.
+            </li>
+            <br>
+            <li>
+                <code>getMaxEnergyStored()</code> Obtient la capacité électrique de la porte.
+                <br>Retourne:
+                <br><code>maxEnergy</code> Quantité d’énergie pouvant être stockée, c’est-à-dire capacité, en RF.
+            </li>
+            <br>
+            <li>
+                <code>getCapacitorsInstalled()</code> Obtient la quantité de banques de condensateurs installées dans le Gate
+                <br>Retourne:
+                <br><code>capacitorCount</code> Nombre de condensateurs, 0-3.
+            </li>
+            <br>
+            <li>
+                <code>toggleIris()</code> Activer/désactiver l'iris.
+            </li>
+            <br>
+            <li>
+                <code>getIrisState()</code> Obtient l’état de l’iris.
+                <br>Retourne:
+                <br><code>state</code> l’état de l’iris du type <code>["open", "closed"]</code>.
+            </li>
+            <br>
+            <li>
+                <code>getIrisType()</code> Obtenir le type de l'iris.
+                <br>Retourne:
+                <br><code>type</code> type de l'iris, parmis <code>["iris_titanium", "iris_trinium", "shield", "none"]</code>
+            </li>
+            <br>
+            <li>
+                <code>getIrisDurability()</code> Obtenir la durabilité de l'iris.
+                <br>Retourne:
+                <br><code>durability</code> la durabilité de l'iris.
+            </li>
+            <br>
+            <li>
+                <code>spinGate(times: integer)</code> Faire tourner l'anneau
+                <br>Paramètres:
+                <br><code>times</code> le nombre de fois pour faire tourner l'anneau
+                <br>Retourne:
+                <br><code>nil</code>
+                <br><code>"stargate_spin"</code> succès ou <code>"stargate_failure_not_idle"</code> et <code>"The gate is idle"</code> échec
+            </li>
+        </ul>
+        <br>
+        <h4>Anneaux de transport</h4>
+        <ul>
+            <li>
+                <code>isInGrid()</code> Vérifie si les anneaux sont valides (c’est-à-dire qu’ils ont le nom et l’adresse).
+                <br>Retourne:
+                <br><code>isInGrid</code> valeur booléenne
+            </li>
+            <br>
+            <li>
+                <code>getAddress()</code> Obtient l’adresse des anneaux connectés.
+                <br>Retourne:
+                <br><code>address</code> adresse entière ou <code>"NOT_IN_GRID"</code>
+            </li>
+            <br>
+            <li>
+                <code>getName()</code> Obtient le nom des anneaux connectés
+                <br>Retourne:
+                <br><code>name</code> nom (en chaîne de charactère) ou <code>"NOT_IN_GRID"</code>
+            </li>
+            <br>
+            <li>
+                <code>setAddress(address: integer)</code> Définit l’adresse des anneaux connectés.
+                <br>Ne peut être utilisé que lorsque les anneaux sont valides. Sinon, utilisez <code>setAddressAndName</code>
+                <br>Paramètres:
+                <br><code>address</code> l’adresse à laquelle vous souhaitez remplacer l’adresse de l’anneau connectés par
+                <br>Retourne:
+                <br><code>result</code> qui est soit <code>"OK"</code> soit <code>"DUPLICATE_ADDRESS"</code>
+            </li>
+            <br>
+            <li>
+                <code>setName(name: string)</code> Définit le nom des anneaux connectés.
+                <br>Ne peut être utilisé que lorsque les anneaux sont valides. Sinon, utilisez <code>setAddressAndName</code>
+                <br>Paramètres:
+                <br><code>name</code> le nom que vous souhaitez définir pour les anneaux connectés.
+            </li>
+            <br>
+            <li>
+                <code>setAddressAndName(address: integer, name: string)</code> Définit l’adresse et le nom des anneaux connectés et les validés
+                <br>Paramètres:
+                <br><code>address</code> l’adresse à laquelle vous souhaitez remplacer l’adresse de l’anneau connectés par
+                <br><code>name</code> le nom que vous souhaitez définir pour les anneaux connectés.
+                <br>Retourne:
+                <br><code>result</code> qui est soit <code>"OK"</code> soit <code>"DUPLICATE_ADDRESS"</code>
+            </li>
+            <li>
+                <code>getAvailableRings()</code> Obtient les anneaux auxquels la plate-forme connectée peut se connecter.
+                <br>Retourne:
+                <br><code>map</code> mappage adresse-nom des anneaux disponibles
+            </li>
+            <br>
+            <li>
+                <code>getAvailableRingsAddresses()</code> Obtient les anneaux auxquels la plate-forme connectée peut se connecter (uniquement les adresses).
+                <br>Retourne:
+                <br><code>list</code> liste des adresses
+            </li>
+            <br>
+            <li>
+                <code>attemptTransportTo(address: integer)</code>  Tente de transporter toutes les entités dans la zone de l’anneau vers l’adresse spécifiée
+                <br>Retourne:
+                <br><code>result</code>peut être l'un de ces types : [<code>"OK"</code>, <code>"BUSY"</code>, <code>"BUSY_TARGET"</code>, <code>"OBSTRUCTED"</code>, <code>"OBSTRUCTED_TARGET"</code>, <code>"NO_SUCH_ADDRESS"</code>]
+            </li>
+        </ul>
+        <br>
+        <h4>Projecteur</h4>
+        <ul>
+            <li>
+                <code>isActive</code> Vérifie si le Projecteur est actif (c’est-à-dire que le <i>faisceau</i> est rendu)
+                <br>Retourne:
+                <br><code>active</code> valeur booléenne
+            </li>
+            <br>
+            <li>
+                <code>setActive(active: boolean)</code> Définit l’indicateur du Projecteur actif.
+                <br>Effectif uniquement lorsque Redstone Control est défini sur Ignorer. La modification du mode Redstone efface cet indicateur.
+                <br>Paramètres:
+                <br><code>active</code> valeur booléenne
+            </li>
+            <br>
+            <li>
+                <code>start()</code> équivalent à l’appel <code>setActive(true)</code>
+            </li>
+            <br>
+            <li>
+                <code>stop()</code> équivalent à l’appel <code>setActive(false)</code>
+            </li>
+            <br>
+            <li>
+                <code>getBeamerMode()</code> obtient le mode du Projecteur
+                <br>Retourne:
+                <br><code>mode</code> le type de cristal qui se trouve dans le Projecteur, peut être l’un des types [<code>"power"</code>, <code>"fluid"</code>, <code>"items"</code>, <code>"none"</code>]
+            </li>
+            <br>
+            <li>
+                <code>getBeamerRole()</code> obtient le role du Projecteur
+                <br>Retourne:
+                <br><code>role</code> Peux être du type : [<code>"transmit"</code>, <code>"receive"</code>, <code>"disabled"</code>]
+            </li>
+            <br>
+            <li>
+                <code>setBeamerRole(role: string)</code> défini le role du Projecteur
+                <br>Paramètres:
+                <br><code>role</code> Peux être du type: [<code>"transmit"</code>, <code>"receive"</code>, <code>"disabled"</code>]
+            </li>
+            <br>
+            <li>
+                <code>getBeamerRedstoneMode()</code> obtient le mode d’acceptation redstone du Projecteur
+                <br>Retourne:
+                <br><code>redstoneMode</code> Peux être du type: [<code>"auto"</code>, <code>"on_high"</code>, <code>"on_low"</code>, <code>"ignored"</code>]
+            </li>
+            <br>
+            <li>
+                <code>setBeamerRedstoneMode(redstoneMode: string)</code> obtient le mode d’acceptation redstone du Projecteur
+                <br>Paramètres:
+                <br><code>redstoneMode</code> Peux être du type: [<code>"auto"</code>, <code>"on_high"</code>, <code>"on_low"</code>, <code>"ignored"</code>]
+            </li>
+            <br>
+            <li>
+                <code>toggleBeamerRole()</code> Bascule entre Transmettre et Recevoir. Annuler une erreur lorsque le projecteur est désactivé.
+                <br>Retourne:
+                <br><code>role</code> Peux être du type: [<code>"transmit"</code>, <code>"receive"</code>, <code>"err_beamer_disabled"</code>]
+            </li>
+            <br>
+            <li>
+                <code>getBeamerStatus</code>
+                <br>Retourne:
+                <br><code>status</code> See <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/beamer/BeamerStatusEnum.java">BeamerStatusEnum</a>
+            </li>
+            <br>
+            <li>
+                <code>getBufferStored()</code> Le résultat dépend du courant <i>mode</i> being set
+                <br>Retourne:
+                <ul>
+                    <li>
+                        <code>POWER</code>: <code>energyStored</code> entier
+                    </li>
+                    <li>
+                        <code>FLUID</code>: <code>fluidAmount</code> entier, <code>fluidName</code> string
+                    </li>
+                    <li>
+                        <code>ITEMS</code>: <code>itemsArray</code> array consisting of name-amount pairs
+                    </li>
+                    <li>
+                        <code>NONE</code>: <code>"no_mode_set"</code>
+                    </li>
+                </ul>
+            </li>
+            <br>
+            <li>
+                <code>getBufferCapacity()</code> The result is depending on the current <i>mode</i> being set
+                <br>Retourne:
+                <ul>
+                    <li>
+                        <code>POWER</code>: <code>maxEnergyStored</code> entier
+                    </li>
+                    <li>
+                        <code>FLUID</code>: <code>capacity</code> entier
+                    </li>
+                    <li>
+                        <code>ITEMS</code>: <code>itemsArray</code> tableau composé de paires nom-quantité
+                    </li>
+                    <li>
+                        <code>NONE</code>: <code>"no_mode_set"</code>
+                    </li>
+                </ul>
+            </li>
+            <h3>Signals</h3>
+            <p class="description">
+                Certains blocks AUNIS génèrent un signal. La plupart des méthodes visent à être <b>non-blocking</b>, vous aurez donc besoin <b>callbacks</b> pour pouvoir utiliser correctement une Stargate par exemple. Voici la liste des blocs et des signaux qu’ils émettent.
+            </p>
+            <h4>Universal Paramètres</h4>
+            <p class="description">
+                Tous les signaux reçus par votre ordinateur auront <i>au moins</i> 2 paramètres:
+                <br><code>address</code> l’adresse réseau OC du composant
+                <br><code>caller</code> true si l’événement a été déclenché par une action provenant de <b>cet</b> ordinateur. si l’action n’est pas venue de l’utilisateur <code>caller</code> est constament false
+            </p>
+            <h4>Stargate Base</h4>
+            <ul>
+                <li>
+                    <code>stargate_spin_start(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> émit quand la Stargate a commencé à tourner après avoir réussi la fonction <code>engageSymbol</code>.
+                    <br>Paramètres:
+                    <br><code>symbolCount</code> le nombre de symboles qui ont été engagés
+                    <br><code>lock</code> will be <code>true</code> si le chevron est <b>locking</b>
+                    <br><code>symbolName</code> le nom du glyphe qui vient d’être engagé
+                </li>
+                <br>
+                <li>
+                    <code>stargate_spin_chevron_engaged(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> émit quand la Stargate a fini d’engager/verrouiller le symbole après avoir réussi la fonction <code>engageSymbol</code> .
+                    <br>Paramètres:
+                    <br><code>symbolCount</code> le nombre de symboles qui ont été engagés
+                    <br><code>lock</code> will be <code>true</code> si le chevron est <b>locking</b>
+                    <br><code>symbolName</code> le nom du glyphe qui vient d’être engagé
+                </li>
+                <br>
+                <li>
+                    <code>stargate_dhd_chevron_engaged(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> émit lorsqu’un glyphe est enfoncé sur un DHD alors que l’ordinateur est connecté à la porte.
+                    <br>Paramètres:
+                    <br><code>symbolCount</code> le nombre de symboles qui ont été engagés
+                    <br><code>lock</code> will be <code>true</code> si le chevron est <b>locking</b>
+                    <br><code>symbolName</code> le nom du glyphe qui vient d’être engagé
+                </li>
+                <br>
+                <li>
+                    <code>stargate_incoming_wormhole(address: string, caller: boolean, dialedAddressSize: integer)</code>émit quand la Stargate a été composé à partir d’une autre porte mais n’a pas encore été engagé (c.-à-d. GBR n’a pas appuyé).
+                    <br>Paramètres:
+                    <br><code>dialedAddressSize</code> le nombre de symboles que vous avez composés sur le  DHD (ou l’ordinateur).
+                </li>
+                <br>
+                <li>
+                    <code>stargate_open(address: string, caller: boolean, isInitiating: boolean)</code> émit quand le vortex commence à s’ouvrir, mais n’est pas encore stable (see <code>stargate_wormhole_stabilized</code>).
+                    <br>Paramètres:
+                    <br><code>isInitiating</code> si la porte est ouverte à partir de cette extrémité.
+                </li>
+                <br>
+                <li>
+                    <code>stargate_close(address: string, caller: boolean, reason: string</code> émit quand le vortex commence à se fermer, mais n’est pas encore complètement fermé (see <code>stargate_wormhole_closed_fully</code>).
+                    <br>Paramètres:
+                    <br><code>reason</code> la raison pour laquelle la porte s’est fermée. Peux être du type [<code>"requested"</code>, <code>"connection_lost"</code>, <code>"out_of_power"</code>, <code>"command"</code>]
+                </li>
+                <br>
+                <li>
+                    <code>stargate_wormhole_stabilized(address: string, caller: boolean, isInitiating: boolean)</code> émit quand le vortex est stable et peut transporter des joueurs/entités/messages OC.
+                    <br>Paramètres:
+                    <br><code>isInitiating</code> si la porte est ouverte à partir de cette extrémité.
+                </li>
+                <br>
+                <li>
+                    <code>stargate_wormhole_closed_fully(address: string, caller: boolean, isInitiating: boolean)</code> émit quand le vortex disparaît complètement.
+                    <br>Paramètres:
+                    <br><code>reason</code> la raison pour laquelle la porte s’est fermée. Peux être du type [<code>"requested"</code>, <code>"connection_lost"</code>, <code>"out_of_power"</code>, <code>"command"</code>]
+                </li>
+                <br>
+                <li>
+                    <code>stargate_failed(address: string, caller: boolean, reason: string)</code> émit quand la Stargate ne s’ouvre pas, soit le <code>engageGate</code> ou presse GBR.
+                    <br>Paramètres:
+                    <br><code>reason</code> la raison pour laquelle la porte a échoué. Peux être du type [<code>"not_enough_power"</code>, <code>"address_malformed"</code>, <code>"aborted"</code>(Universe Dialer)]
+                </li>
+                <br>
+                <li>
+                    <code>stargate_traveler(address: string, caller: boolean, inbound: boolean, isPlayer: boolean, entityClass: string)</code> émit quand la Stargate reçois une transmission de matière.
+                    <br>Paramètres:
+                    <br><code>inbound</code> <b>l’Entité</b> se déplace de l’autre côté.
+                    <br><code>isPlayer</code> <b>l’Entité</b> est un <b>EntityPlayerMP</b> plutôt que : élément, animal, minecart, flèche...
+                    <br><code>entityClass</code> le nom de classe de <b>l’entité</b>. Par exemple. <code>EntityPlayerMP</code>, <code>EntityItem</code>, <code>EntityTippedArrow</code>
+                </li>
+            </ul>
+            <h4>Anneaux de transport</h4>
+            <br>
+            <ul>
+                <li>
+                    <code>transportrings_teleport_start(address: string, caller: boolean, initiating: boolean)</code> émit lorsque les anneaux démarrent l’animation de téléportation.
+                    <br>Paramètres:
+                    <br><code>initiating</code> <code>true</code> si les anneaux connectés initialisent la connexion
+                </li>
+                <br>
+                <li>
+                    <code>transportrings_teleport_finished(address: string, caller: boolean, initiating: boolean)</code> émit lorsque les anneaux terminent l’animation de téléportation.
+                    <br>Paramètres:
+                    <br><code>initiating</code> <code>true</code> si les anneaux connectés initialisent la connexion
+                </li>
+            </ul>
+            <h4>Projecteur</h4>
+            <br>
+            <ul>
+                <li>
+                    <code>beamer_started(address: string, caller: boolean)</code> émit quand le Projecteur démarrent.
+                </li>
+                <br>
+                <li>
+                    <code>beamer_stopped(address: string, caller: boolean)</code> émit quand le Projecteur s'arrêtent.
+                </li>
+                <br>
+                <li>
+                    <code>beamer_transfers(address: string, caller: boolean, transferred: array)</code> Émis chaque seconde (configurable) lorsque le Projecteur transfère quelque chose.
+                    <br>Paramètres:
+                    <br><code>transferred</code> est un des types [<code>"power"</code>, nom complet du fluide/de l’élément] et la valeur est la quantité qui a été transférée
+                    <br>Regardez <a href="https://gist.github.com/MrJake222/30a3bc57a2a3657d8682bbd858e024c0">ce gist</a> pour un programme simple comptant tous les transferts.
+                </li>
+            </ul>
+        </ul>
+        <br>
+        <a id="tic">
+            <h2>Tinkers Construct</h2>
+        </a>
+        <hr>
+        <p class="description">
+            Tinkers construct est un mod qui ajoute une fonderie qui peut être utilisée pour fondre les métaux et les allier ensemble grâce à l’utilisation de cette fonderie (si vous avez l’intégration de bricolages activée dans la configuration), vous pouvez fondre des matériaux AUNIS tels que le trinium et
+            alliage de naquadah et lingots coulés de ces matériaux avec le métal liquide.
+        </p>
+    </div>
+</body>
+
+</html>
