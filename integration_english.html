@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Materials</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="all.css">
+</head>
+<script type="text/javascript" src="theme_change.js"></script>
+
+<body class="dark">
+    <select id="theme-selector">
+        <option value="dark">Dark mode</option>
+        <option value="light">Light mode</option>
+    </select>
+    <div id="menubar">
+        <header id="page_name">
+            Integration
+        </header>
+        <ul id="menu_items">
+            <a href="home_english.html">
+                <li class="menu_item">Home</li>
+            </a>
+            <a href="stargates_english.html">
+                <li class="menu_item">Stargates</li>
+            </a>
+            <a href="dhds_english.html">
+                <li class="menu_item">DHDs</li>
+            </a>
+            <a href="irises_english.html">
+                <li class="menu_item">Irises</li>
+            </a>
+            <a href="transport_rings_english.html">
+                <li class="menu_item">Transport rings</li>
+            </a>
+            <a href="materials_english.html">
+                <li class="menu_item">Materials</li>
+            </a>
+            <li id="selected" class="menu_item fixer">Integration</li>
+        </ul>
+        <br>
+        <ul id="submenu_items">
+            <a href="#oc">
+                <li>OC (open computers)</li>
+            </a>
+            <a href="#tic">
+                <li>Tinkers Construct</li>
+            </a>
+        </ul>
+    </div>
+    <br><br>
+    <div id="page">
+        <a id="oc">
+            <h2>OC (open computers)</h2>
+        </a>
+        <hr>
+        <p class="description">
+            <a href="https://www.curseforge.com/minecraft/mc-mods/opencomputers" class="external-link">OpenComputers</a> is a mod about computers(duh). It adds fancy-style, modular screens, PCs, servers and much more. AUNIS is compatible with these computers(as
+            of version 1.5) and provides SGC-style dialing by them.
+        </p>
+        <h3>Simple dialing program</h3>
+        <p class="description">
+            Check out this <a href="https://gist.github.com/MrJake222/c4f8eab50dd91e8b133a8d51616d7eb7" class="external-link">gist</a>.
+        </p>
+        <h3>Methods</h3>
+        <p class="description">
+            List of methods some <b>TileEntities</b> support
+        </p>
+        <h4>Stargate Base</h4>
+        <ul>
+            <li>
+                <code>getGateType()</code>
+                <br>Returns:
+                <br><code>gateType</code> Can be one of: <code>["MILKYWAY", "PEGASUS", "UNIVERSE"]</code>
+            </li>
+            <br>
+            <li>
+                <code>getGateStatus()</code>
+                <br>Returns:
+                <br><code>gateStatus</code> Can be one of <code>["not_merged", "open", "idle", "dialing", "dialing_computer", "unstable", "failing"]</code>
+                <br><code>openState</code> When <code>gateStatus</code> is <code>"open"</code> this parameter is <code>true</code> for the initiating gate and <code>false</code> on the receiving one.
+                <br><code>"dialing"</code> is when there is a delay after pressing the Glyph on the DHD and the actual chevron locking.
+                <br><code>"dialing_computer"</code> is when you spin the gate/ring with a computer, and it returns to idle after the spin finishes.
+            </li>
+            <br>
+            <li>
+                <code>getEnergyRequiredToDial(symbols... or symbols:array</code> Gets the energy required to dial specified gate. From Aunis 1.9.6.
+                <br>Parameters:
+                <br><code>symbols...</code> Symbols as subsequent string parameters
+                <br><code>symbols:array</code> Symbols as an array.
+                <br><i>Point of origin is added automatically if not present</i>
+                <br>Returns:
+                <br><code>"not_merged"</code> Gate's not merged (duh), or
+                <br><code>"address_malformed"</code> (No such gate, address contains less than 7 symbols), or
+                <br><code>energyMap</code> Map (aka array in Lua) with 3 indexes: [<code>open</code>(open cost, in RF),
+                <open>keepAlive</open>(sustain cost, in RF/t), <code>canOpen</code>(if the stored power is enough to open the wormhole, boolean)]
+            </li>
+            <br>
+            <li>
+                <code>engageSymbol(symbolName: string or symbolIndex: integer): table</code> Spins the ring to the given symbol and engages/locks it.
+                <br>Parameters:
+                <br><code>symbolName</code> is the <b>name</b> of the <b>symbol</b> to be engaged
+                <br><code>symbolIndex</code> is the <b>index</b> of the <b>symbol</b> to be engaged. see <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolMilkyWayEnum.java" class="external-link">Milkyway Symbols</a>,
+                <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolPegasusEnum.java" class="external-link">Pegasus Symbols</a>, <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolUniverseEnum.java"
+                    class="external-link">Universe Symbols</a>.
+                <br>Returns:
+                <br><code>status</code> If nil, command failed, otherwise <code>"stargate_spin"</code>.
+                <br><code>"stargate_failure_*"</code> Name of the failure (busy, full, contains, not_merged).
+                <br><code>description</code> description of the failure.
+            </li>
+            <br>
+            <li>
+                <code>engageGate()</code>
+                <br>Returns:
+                <br><code>status</code> If nil, command failed, otherwise <code>"stargate_engage"</code>.
+                <br><code>"stargate_failure_*"</code> Name of the failure (busy, full, contains, not_merged).
+                <br><code>description</code> description of the failure.
+                <br><code>gateState</code> State after <code>engageGate</code> command. (BUSY [Source gate], NOT_ENOUGH_POWER, ADDRESS_MALFORMED [could mean that the target gate is busy]).
+            </li>
+            <br>
+            <li>
+                <code>disengageGate()</code> Tries to close the gate.
+                <br>Returns:
+                <br><code>status</code> If nil, command failed, otherwise <code>"stargate_disengage"</code>.
+                <br><code>"stargate_failure_*"</code> Name of the failure (wrong_end, not_open, not_merged).
+                <br><code>description</code> description of the failure.
+            </li>
+            <br>
+            <li>
+                <code>getEnergyStored()</code> Gets the amount of energy stored in the gate.
+                <br>Returns:
+                <br><code>energy</code> Amount of energy stored, in RF.
+            </li>
+            <br>
+            <li>
+                <code>getMaxEnergyStored()</code> Gets the electrical capacity of the gate.
+                <br>Returns:
+                <br><code>maxEnergy</code> Amount of energy that can be stored i.e. capacity, in RF.
+            </li>
+            <br>
+            <li>
+                <code>getCapacitorsInstalled()</code> Gets the amount of Capacitor Banks installed in the Gate.
+                <br>Returns:
+                <br><code>capacitorCount</code> Capacitor count, 0-3.
+            </li>
+            <br>
+            <li>
+                <code>toggleIris()</code> Toggles the iris.
+            </li>
+            <br>
+            <li>
+                <code>getIrisState()</code> Gets the state of the iris.
+                <br>Returns:
+                <br><code>state</code> the state of the iris one of <code>["open", "closed"]</code>.
+            </li>
+            <br>
+            <li>
+                <code>getIrisType()</code> gets the type of iris.
+                <br>Returns:
+                <br><code>type</code> the type of the iris, one of <code>["iris_titanium", "iris_trinium", "shield", "none"]</code>
+            </li>
+            <br>
+            <li>
+                <code>getIrisDurability()</code> gets the durability of the iris.
+                <br>Returns:
+                <br><code>durability</code> the durability of the iris.
+            </li>
+            <br>
+            <li>
+                <code>spinGate(times: integer)</code> spins the gate
+                <br>Parameters:
+                <br><code>times</code> the amount of times to spin the gate
+                <br>Returns:
+                <br><code>nil</code>
+                <br><code>"stargate_spin"</code> success or <code>"stargate_failure_not_idle"</code> and <code>"The gate is idle"</code> failure
+            </li>
+        </ul>
+        <br>
+        <h4>Transport rings</h4>
+        <ul>
+            <li>
+                <code>isInGrid()</code> Checks if the Rings are in grid(i.e. have name and address).
+                <br>Returns:
+                <br><code>isInGrid</code> boolean value
+            </li>
+            <br>
+            <li>
+                <code>getAddress()</code> Gets the address of attached rings.
+                <br>Returns:
+                <br><code>address</code> integer address or <code>"NOT_IN_GRID"</code>
+            </li>
+            <br>
+            <li>
+                <code>getName()</code> Gets the name of the attached rings
+                <br>Returns:
+                <br><code>name</code> string name or <code>"NOT_IN_GRID"</code>
+            </li>
+            <br>
+            <li>
+                <code>setAddress(address: integer)</code> Sets the address for the attached rings.
+                <br>Can only be used when the rings are in a grid. Otherwise use <code>setAddressAndName</code>
+                <br>Parameters:
+                <br><code>address</code> the address you want to change the attached ring's address to
+                <br>Returns:
+                <br><code>result</code> which will be one of <code>"OK"</code> or <code>"DUPLICATE_ADDRESS"</code>
+            </li>
+            <br>
+            <li>
+                <code>setName(name: string)</code> Sets the name of the attached rings.
+                <br>Can only be used when the rings are in a grid. Otherwise use <code>setAddressAndName</code>
+                <br>Parameters:
+                <br><code>name</code> the name you want to set for the attached rings.
+            </li>
+            <br>
+            <li>
+                <code>setAddressAndName(address: integer, name: string)</code> Sets the address and name of the attached rings and adds them to grid
+                <br>Parameters:
+                <br><code>address</code> the address you want to change the attached ring's address to
+                <br><code>name</code> the name you want to set for the attached rings.
+                <br>Returns:
+                <br><code>result</code> which will be one of <code>"OK"</code> or <code>"DUPLICATE_ADDRESS"</code>
+            </li>
+            <li>
+                <code>getAvailableRings()</code> Gets the rings to which attached platform can connect.
+                <br>Returns:
+                <br><code>map</code> address to name mapping of available rings
+            </li>
+            <br>
+            <li>
+                <code>getAvailableRingsAddresses()</code> Gets the rings to which attached platform can connect(only addresses).
+                <br>Returns:
+                <br><code>list</code> list of addresses
+            </li>
+            <br>
+            <li>
+                <code>attemptTransportTo(address: integer)</code> Attempts to transport all entities within the ring's area to the specified address
+                <br>Returns:
+                <br><code>result</code>which can be one of: [<code>"OK"</code>, <code>"BUSY"</code>, <code>"BUSY_TARGET"</code>, <code>"OBSTRUCTED"</code>, <code>"OBSTRUCTED_TARGET"</code>, <code>"NO_SUCH_ADDRESS"</code>]
+            </li>
+        </ul>
+        <br>
+        <h4>Beamer</h4>
+        <ul>
+            <li>
+                <code>isActive</code> Checks if the Beamer is active(i.e. the <i>beam</i> is rendered)
+                <br>Returns:
+                <br><code>active</code> boolean value
+            </li>
+            <br>
+            <li>
+                <code>setActive(active: boolean)</code> Sets the Beamer active flag.
+                <br>Only effective when Redstone Control is set to Ignore. Changing the Redstone Mode clears this flag.
+                <br>Parameters:
+                <br><code>active</code> boolean value
+            </li>
+            <br>
+            <li>
+                <code>start()</code> equivalent to calling <code>setActive(true)</code>
+            </li>
+            <br>
+            <li>
+                <code>stop()</code> equivalent to calling <code>setActive(false)</code>
+            </li>
+            <br>
+            <li>
+                <code>getBeamerMode()</code> gets the mode of the Beamer
+                <br>Returns:
+                <br><code>mode</code> the type of crystal that is in the Beamer, can be one of [<code>"power"</code>, <code>"fluid"</code>, <code>"items"</code>, <code>"none"</code>]
+            </li>
+            <br>
+            <li>
+                <code>getBeamerRole()</code> gets the role of the Beamer
+                <br>Returns:
+                <br><code>role</code> Can be one of: [<code>"transmit"</code>, <code>"receive"</code>, <code>"disabled"</code>]
+            </li>
+            <br>
+            <li>
+                <code>setBeamerRole(role: string)</code> sets the role of the Beamer
+                <br>Parameters:
+                <br><code>role</code> Can be one of: [<code>"transmit"</code>, <code>"receive"</code>, <code>"disabled"</code>]
+            </li>
+            <br>
+            <li>
+                <code>getBeamerRedstoneMode()</code> gets the redstone acceptance mode of the Beamer
+                <br>Returns:
+                <br><code>redstoneMode</code> Can be one of: [<code>"auto"</code>, <code>"on_high"</code>, <code>"on_low"</code>, <code>"ignored"</code>]
+            </li>
+            <br>
+            <li>
+                <code>setBeamerRedstoneMode(redstoneMode: string)</code> gets the redstone acceptance mode of the Beamer
+                <br>Parameters:
+                <br><code>redstoneMode</code> Can be one of: [<code>"auto"</code>, <code>"on_high"</code>, <code>"on_low"</code>, <code>"ignored"</code>]
+            </li>
+            <br>
+            <li>
+                <code>toggleBeamerRole()</code> Toggles between Transmit and Receive. Returns an error when the beamer is disabled.
+                <br>Returns:
+                <br><code>role</code> Can be one of: [<code>"transmit"</code>, <code>"receive"</code>, <code>"err_beamer_disabled"</code>]
+            </li>
+            <br>
+            <li>
+                <code>getBeamerStatus</code>
+                <br>Returns:
+                <br><code>status</code> See <a href="https://github.com/MineDragonCz/Aunis1/blob/master/src/main/java/mrjake/aunis/beamer/BeamerStatusEnum.java">BeamerStatusEnum</a>
+            </li>
+            <br>
+            <li>
+                <code>getBufferStored()</code> The result is depending on the current <i>mode</i> being set
+                <br>Returns:
+                <ul>
+                    <li>
+                        <code>POWER</code>: <code>energyStored</code> integer
+                    </li>
+                    <li>
+                        <code>FLUID</code>: <code>fluidAmount</code> integer, <code>fluidName</code> string
+                    </li>
+                    <li>
+                        <code>ITEMS</code>: <code>itemsArray</code> array consisting of name-amount pairs
+                    </li>
+                    <li>
+                        <code>NONE</code>: <code>"no_mode_set"</code>
+                    </li>
+                </ul>
+            </li>
+            <br>
+            <li>
+                <code>getBufferCapacity()</code> The result is depending on the current <i>mode</i> being set
+                <br>Returns:
+                <ul>
+                    <li>
+                        <code>POWER</code>: <code>maxEnergyStored</code> integer
+                    </li>
+                    <li>
+                        <code>FLUID</code>: <code>capacity</code> integer
+                    </li>
+                    <li>
+                        <code>ITEMS</code>: <code>itemsArray</code> array consisting of name-amount pairs
+                    </li>
+                    <li>
+                        <code>NONE</code>: <code>"no_mode_set"</code>
+                    </li>
+                </ul>
+            </li>
+            <h3>Signals</h3>
+            <p class="description">
+                Some of AUNIS blocks generate signals. Most of methods are aimed to be <b>non-blocking</b>, so you'll need <b>callbacks</b> to be able to properly drive a Stargate for example. Here is the list of blocks and signals they emit.
+            </p>
+            <h4>Universal parameters</h4>
+            <p class="description">
+                All signals received by your computer will have <i>at least</i> 2 parameters:
+                <br><code>address</code> the OC network address of the component
+                <br><code>caller</code> true if the event was triggered by an action originating from <b>this</b> computer. if the action didn't come from the user <code>caller</code> is always false
+            </p>
+            <h4>Stargate Base</h4>
+            <ul>
+                <li>
+                    <code>stargate_spin_start(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> Emmited when Stargate started to spin after successful <code>engageSymbol</code> call.
+                    <br>Parameters:
+                    <br><code>symbolCount</code> the number of symbols that have been engaged
+                    <br><code>lock</code> will be <code>true</code> if the chevron is <b>locking</b>
+                    <br><code>symbolName</code> the name of the glyph that was just engaged
+                </li>
+                <br>
+                <li>
+                    <code>stargate_spin_chevron_engaged(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> Emmited when Stargate finished engaging/locking the symbol after successful <code>engageSymbol</code>                    call.
+                    <br>Parameters:
+                    <br><code>symbolCount</code> the number of symbols that have been engaged
+                    <br><code>lock</code> will be <code>true</code> if the chevron is <b>locking</b>
+                    <br><code>symbolName</code> the name of the glyph that was just engaged
+                </li>
+                <br>
+                <li>
+                    <code>stargate_dhd_chevron_engaged(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> Emmited when a glyph is pressed on a DHD while the computer is attached to the Gate.
+                    <br>Parameters:
+                    <br><code>symbolCount</code> the number of symbols that have been engaged
+                    <br><code>lock</code> will be <code>true</code> if the chevron is <b>locking</b>
+                    <br><code>symbolName</code> the name of the glyph that was just engaged
+                </li>
+                <br>
+                <li>
+                    <code>stargate_incoming_wormhole(address: string, caller: boolean, dialedAddressSize: integer)</code>Emmited when Stargate was dialed from another Gate but hasn't been engaged yet(i.e. BRB not pressed).
+                    <br>Parameters:
+                    <br><code>dialedAddressSize</code> how many symbols dialing site pressed on the DHD (or computer).
+                </li>
+                <br>
+                <li>
+                    <code>stargate_open(address: string, caller: boolean, isInitiating: boolean)</code> Emmited when Stargate starts to open, but isn't stable yet (see <code>stargate_wormhole_stabilized</code>).
+                    <br>Parameters:
+                    <br><code>isInitiating</code> if the gate is being opened from this end.
+                </li>
+                <br>
+                <li>
+                    <code>stargate_close(address: string, caller: boolean, reason: string</code> Emmited when Stargate starts to close, but isn't fully closed yet (see <code>stargate_wormhole_closed_fully</code>).
+                    <br>Parameters:
+                    <br><code>reason</code> the reason why the gate closed. Can be one of [<code>"requested"</code>, <code>"connection_lost"</code>, <code>"out_of_power"</code>, <code>"command"</code>]
+                </li>
+                <br>
+                <li>
+                    <code>stargate_wormhole_stabilized(address: string, caller: boolean, isInitiating: boolean)</code> Emmited when Stargate wormhole is stable and can transport players/entities/OC messages.
+                    <br>Parameters:
+                    <br><code>isInitiating</code> if the gate is being opened from this end.
+                </li>
+                <br>
+                <li>
+                    <code>stargate_wormhole_closed_fully(address: string, caller: boolean, isInitiating: boolean)</code> Emmited when Stargate wormhole disappears completely.
+                    <br>Parameters:
+                    <br><code>reason</code> the reason why the gate closed. Can be one of [<code>"requested"</code>, <code>"connection_lost"</code>, <code>"out_of_power"</code>, <code>"command"</code>]
+                </li>
+                <br>
+                <li>
+                    <code>stargate_failed(address: string, caller: boolean, reason: string)</code> Emmited when Stargate fails to open, either on <code>engageGate</code> or BRB press.
+                    <br>Parameters:
+                    <br><code>reason</code> the reason why the gate failed. can be one of [<code>"not_enough_power"</code>, <code>"address_malformed"</code>, <code>"aborted"</code>(Universe Dialer)]
+                </li>
+                <br>
+                <li>
+                    <code>stargate_traveler(address: string, caller: boolean, inbound: boolean, isPlayer: boolean, entityClass: string)</code> Emmited when Stargate receives on transmits matter.
+                    <br>Parameters:
+                    <br><code>inbound</code> the <b>Entity</b> is traveling from the other end.
+                    <br><code>isPlayer</code> the <b>Entity</b> is a <b>EntityPlayerMP</b> rather than: item, animal, minecart, arrow...
+                    <br><code>entityClass</code> the <b>Entity</b>'s class name. For ex. <code>EntityPlayerMP</code>, <code>EntityItem</code>, <code>EntityTippedArrow</code>
+                </li>
+            </ul>
+            <h4>Transport Rings</h4>
+            <br>
+            <ul>
+                <li>
+                    <code>transportrings_teleport_start(address: string, caller: boolean, initiating: boolean)</code> Emmited when Rings start the teleport animation.
+                    <br>Parameters:
+                    <br><code>initiating</code> <code>true</code> if the attached rings initiated teh connection
+                </li>
+                <br>
+                <li>
+                    <code>transportrings_teleport_finished(address: string, caller: boolean, initiating: boolean)</code> Emmited when Rings finish the teleport animation.
+                    <br>Parameters:
+                    <br><code>initiating</code> <code>true</code> if the attached rings initiated teh connection
+                </li>
+            </ul>
+            <h4>Beamer</h4>
+            <br>
+            <ul>
+                <li>
+                    <code>beamer_started(address: string, caller: boolean)</code> Emmited when the Beamer starts being active.
+                </li>
+                <br>
+                <li>
+                    <code>beamer_stoped(address: string, caller: boolean)</code> Emmited when the Beamer stops being active.
+                </li>
+                <br>
+                <li>
+                    <code>beamer_transfers(address: string, caller: boolean, transferred: array)</code> Emmited every second (configurable) when the Beamer transfers something.
+                    <br>Parameters:
+                    <br><code>transferred</code> key is one of [<code>"power"</code>, fluid/item display name] and the value is the amount that was transferred
+                    <br>See <a href="https://gist.github.com/MrJake222/30a3bc57a2a3657d8682bbd858e024c0">this gist</a> for a simple program counting all transfers.
+                </li>
+            </ul>
+        </ul>
+    </div>
+</body>
+
+</html>
