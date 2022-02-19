@@ -87,7 +87,7 @@
             </li>
             <br>
             <li>
-                <code>getEnergyRequiredToDial(symbols... or symbols:array</code> Gets the energy required to dial specified gate. From Aunis 1.9.6.
+                <code>getEnergyRequiredToDial(symbols... or symbols:array</code> Gets the energy required to dial specified gate. From AUNIS 1.9.6.
                 <br>Parameters:
                 <br><code>symbols...</code> Symbols as subsequent string parameters
                 <br><code>symbols:array</code> Symbols as an array.
@@ -103,8 +103,8 @@
                 <code>engageSymbol(symbolName: string or symbolIndex: integer): table</code> Spins the ring to the given symbol and engages/locks it.
                 <br>Parameters:
                 <br><code>symbolName</code> is the <b>name</b> of the <b>symbol</b> to be engaged
-                <br><code>symbolIndex</code> is the <b>index</b> of the <b>symbol</b> to be engaged. see <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolMilkyWayEnum.java" class="external-link">Milkyway Symbols</a>,
-                <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolPegasusEnum.java" class="external-link">Pegasus Symbols</a>, <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolUniverseEnum.java"
+                <br><code>symbolIndex</code> is the <b>index</b> of the <b>symbol</b> to be engaged. see <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolMilkyWayEnum.java" class="external-link">Milkyway Symbols</a>,
+                <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolPegasusEnum.java" class="external-link">Pegasus Symbols</a>, <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolUniverseEnum.java"
                     class="external-link">Universe Symbols</a>.
                 <br>Returns:
                 <br><code>status</code> If nil, command failed, otherwise <code>"stargate_spin"</code>.
@@ -304,7 +304,7 @@
             <li>
                 <code>getBeamerStatus</code>
                 <br>Returns:
-                <br><code>status</code> See <a href="https://github.com/MineDragonCz/Aunis1/blob/master/src/main/java/mrjake/aunis/beamer/BeamerStatusEnum.java">BeamerStatusEnum</a>
+                <br><code>status</code> See <a href="https://github.com/MineDragonCz/Aunis1/blob/master/src/main/java/mrjake/AUNIS/beamer/BeamerStatusEnum.java">BeamerStatusEnum</a>
             </li>
             <br>
             <li>
@@ -447,7 +447,7 @@
                 </li>
                 <br>
                 <li>
-                    <code>beamer_stoped(address: string, caller: boolean)</code> Emmited when the Beamer stops being active.
+                    <code>beamer_stopped(address: string, caller: boolean)</code> Emmited when the Beamer stops being active.
                 </li>
                 <br>
                 <li>
@@ -458,6 +458,15 @@
                 </li>
             </ul>
         </ul>
+        <br>
+        <a id="tic">
+            <h2>Tinkers Construct</h2>
+        </a>
+        <hr>
+        <p class="description">
+            Tinkers construct is a mod that adds a smeltery which can be used to melt down metals and alloy them together through the use of this smeltery(if you have tinkers integration enabled in the config) you can melt down AUNIS materials such as trinium and
+            naquadah alloy and cast ingots of these materials with the liquid metal.
+        </p>
     </div>
 </body>
 
