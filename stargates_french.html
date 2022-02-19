@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stargates</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="all.css">
+</head>
+<script type="text/javascript" src="theme_change.js"></script>
+
+<body class="dark">
+    <select id="theme-selector">
+        <option value="dark">Dark mode</option>
+        <option value="light">Light mode</option>
+    </select>
+    <div id="menubar">
+        <header id="page_name">
+            Stargates
+        </header>
+        <ul id="menu_items">
+            <a href="home_french.html">
+                <li class="menu_item">Menu</li>
+            </a>
+            <li id="selected" class="menu_item">Stargates</li>
+            <a href="dhds_french.html">
+                <li class="menu_item">DHDs</li>
+            </a>
+            <a href="irises_french.html">
+                <li class="menu_item">Iris</li>
+            </a>
+            <a href="transport_rings_french.html">
+                <li class="menu_item">Anneaux de transport</li>
+            </a>
+            <a href="materials_french.html">
+                <li class="menu_item">Matériaux</li>
+            </a>
+            <a href="integration_french.html">
+                <li class="menu_item">Intégration</li>
+            </a>
+        </ul>
+        <br>
+        <ul id="submenu_items">
+            <a href="#general">
+                <li>Général</li>
+            </a>
+            <a href="#orlin">
+                <li>Orlin</li>
+            </a>
+            <a href="#universe">
+                <li>Universe</li>
+            </a>
+            <a href="#milkyway">
+                <li>Voie lactée</li>
+            </a>
+            <a href="#pegasus">
+                <li>Pégase</li>
+            </a>
+            <a href="#crystals">
+                <li>Cristaux de Symboles</li>
+            </a>
+            <a href="#notebook">
+                <li>Livre de notes et pages</li>
+            </a>
+            <a href="#powerdraw">
+                <li>Energie</li>
+            </a>
+        </ul>
+    </div>
+    <div id=page>
+        <br><br>
+        <a href="media/all_gates.png" target="_blank"><img src="media/all_gates.png" alt="all gates merged" id="all_gates"></a>
+        <a id="general">
+            <h2>
+                Général
+            </h2>
+        </a>
+        <hr>
+        <p class="description">
+            Les Stargates possèdent 3 différentes variantes:
+        </p>
+        <ol class="description">
+            <li>Universe</li>
+            <li>Milkyway</li>
+            <li>Pegasus</li>
+        </ol>
+        <p class="description">
+            Chacune a ses avantages et ses inconvénients, mais fonctionnent toutes de la même manière : elles utilisent un ensemble de 7 à 9 chevrons pour se connecter à une autre Stargate. Les Stargates d'Universe requirent l'activation de 9 chevrons pour
+            pouvoir réaliser une connexion depuis un autre type de Stargate. Les Stargates de la Voie Lactée et de Pégase ne requirent que 7 à 8 chevrons repésentant des coordonnées spatiales. En cas de connexion à 8 chevrons, le 7<sup>ème</sup> chevron correspond à un indicateur de zone
+            permettant d'indiquer le changement de galaxie, tel qu'une connexion entre une Stargate de la Voie Lactée et une de Pégase. En cas de connexion à 9 chevrons, le Point d'Origine peut servir de code d'identification pour une connexion sécurisé (non implémenté dans le mod).
+            Toutes les adresses se terminent par le Point d'Origine (PO) qui a pour information la localisation d'origine de la Stargate appelante.
+        </p>
+        <br>
+        <p class="description">
+            Dans la série, nous pouvons voir de multiples fois que lorsque une Stargate est en activation un vortex instable se forme, il est communément appelé kawoosh. Dans la série, ce phénomène vaporise tout élément se trouvant être prise dans celui-ci, passant de personnes à des vaisseaux entiers,
+            cette fonctionnalité a été implantée dans le mod et peut détruire la presque intégralité des blocks du jeu (exception de l'obsidiant et de la bedrock et autres block qui peuvent résister à de la TNT). Dans le mod, le kawoosh possède une dimension de 3 x 3 sur 7 blocks de long, exception de la Porte d'Orlin
+            avec un rayon de 1 block.
+            <img src="media/stargate_horizon_killing_live.gif" alt="kawoosh event">
+            <img src="media/stargate_horizon_killing_whole.jpg" alt="kawoosh maximum hitbox">
+        </p>
+        <br>
+        <p class="description">
+            <img src="media/stargate_gui.png" alt="basic GUI of stargate"> L'interface est plutôt simple et possède 8 emplacements d'items. Les 4 emplacements de gauche sont conçus pour contenir les différents cristaux de Symboles, l'emplacement du milieu est conçus pour l'Iris,
+            les emplacements de droite sont pour les condensateur. Les condensateur augmentent la quantité d'énergie maximum que la Stargate peut contenir.
+        </p>
+        <p class="description">
+            Dans la série, la porte mesure environ 6.7 m (22 pieds) de diamètre, dans le mod, elles mesurent approximativement 7.15 blocks de diamètre ; ce qui est plus grand que celle de la série, mais a pour cause les limitations du jeu. Les autres inexactitudes sont soit en cours de travail
+            soit limité par le jeu.
+        </p>
+        <hr>
+        <a id="orlin">
+            <h2>Orlin</h2>
+        </a>
+        <hr>
+        <img src="media/orlin_gate.png" alt="Orlin's minigate">
+        <p class="description">
+            Dans la série, nous pouvoir voir un Ancien (nommé Orlin) ayant fait son ascension construire une Stargate miniature dans le sous-sol du Major Carter en utilisant différents matériaux terriens achetés par internet, notamment du titane, du câble, des condensateurs industriels et un grille-pain.
+            Dans la série cette Stargate n'as qu'une utilisation unique, mais le mod lui as donné l'utilité de pouvoir se rendre dans le Nether (avec assez d'alimentation énergétique) en lui donnant un signal redstone, ce qui aura pour conséquence de générer
+            (dans le cas de la première utilisation d'une stargate d'Orlin dans le monde) une Stargate dans le Nether (vous pouvez modifier la quantité d'utilisation de la Stargate dans les configurations du mod). Il est important de noter qu'une activation extérieure de celle-ci compte
+            comme une utilisation ! Afin de retourner dans l'Overworld, il vous suffira d'entrer l'adresse de la Terre (celle de la série) afin de vous rendre à la dernière Stargate d'Orlin utilisé.
+        </p>
+        <hr>
+        <a id="universe">
+            <h2>Universe</h2>
+        </a>
+        <hr>
+        <img src="media/uni_gate.png" alt="a universe stargate">
+        <p class="description">
+            Dans la série, nous savons que les Stargates d'Universe sont les premières générations de Stargates et par conséquence les pires des trois ; elles sont moins durables et possèdent une portée de connexion limité.
+        </p>
+        <br>
+        <p class="description">
+                Les Stargates d'Universe sont les plus désavantageuses du lot. Elles ont une consommation plus importante, peuvent exploser avec une TNT, ont une rotation d'anneau lente (quand utiliser avec Open Computer), une impossibilité à posséder des condensateurs (configurable dans le mod),
+                et ne possèdent pas de DHD attitré ne permettant donc pas une recharge énergétique par celui-ci. Le seul avantage peut être celui d'utilisé d'Universe Dialer qui peut stocker toutes les adresses en mémoire, vous permettant de vous alléger de ce poids.
+                En terme de progression dans le jeu, elles sont celles qui sont le plus facilement accessibles, car nécessitent moins de naquadah.
+        </p>
+        <hr>
+        <a id="milkyway">
+            <h2>Voie Lactée</h2>
+        </a>
+        <hr>
+        <img src="media/mw_gate.png" alt="a milkyway stargate">
+        <p class="description">
+            Les Stargates de la Voie Lactée sont de 2<sup>nd</sup> générations, crée par les Anciens et consommant moins d'énergie que celles d'Universe, elles peuvent composer plus rapidement grâce à un DHD, mais peuvent aussi réaliser une connexion en réalisant une rotation manuelle de
+            l'anneau (pas encore implémenté dans le mod) rotatif possédant les gravures des différents symboles de la Voie Lactée, dont le symbole oublié d'Aquila (oublié car il n'est présent sur aucun DHD). Le mod n'utilisera pas le symbole lors de la génération de l'adresse de la Stargate.
+            La composition rotative  est plus rapide lorsque composé par ordinateur (Open Computer) que celles d'Universe.
+        </p>
+        <hr>
+        <a id="pegasus">
+            <h2>Pégase</h2>
+        </a>
+        <hr>
+        <img src="media/peg_gate.png" alt="a pegasus stargate">
+        <p class="description">
+            Les Stargates de Pégase sont de 3<sup>ème</sup> générations, la plus perfectionnées des 3 avec la particularité de posséder un panneau émetteur de lumière, ils ont également simplifié les glyphes qu’ils utilisaient aux formations d’étoiles réelles au lieu des images qui les représentent comme celles de la Voie Lactée.
+            De plus, ces Stargates utilisent moins d'énergie que celles de la Voie Lactée. Dans le mod, la Stargate de Pégase est celles qui possèdent le meilleure rendement énergétique et la plus rapide composition d'adresse (si utilisé avec Open Computer), avec environs 1 seconde pour activer un chevron contre 10 pour celles
+            de la Voie Lactée.
+        </p>
+        <hr>
+        <a id="crystals">
+            <h2>Cristaux de Symboles</h2>
+        </a>
+        <hr>
+        <img src="media/stargate_glyph_crystals.png" alt="the stargate glyph crystals">
+        <p class="description">
+            CES CRISTAUX N'AFFECTENT PAS LE FONCTIONNEMENT DE LA STARGATE
+            <br>Ces cristaux sont uniquement utilisés afin de pouvoir visualisé et récupérer l'adresse de la Stargate concerné dans une page de note, pour utiliser la page pour enregistrer l'adresse vous devez l'insérer dans l'emplacement dans l'interface comme ci-dessous :
+            <img src="media/page_notebook_in_tab.jpg" alt="address being recorded on notebook page">
+        </p>
+        <hr>
+        <a id="notebook">
+            <h2>Livre de notes et pages</h2>
+        </a>
+        <hr>
+        <p class="description">
+            Pour crafter un livre de notes vous devez faire comme ceci :
+            <img src="media/page_notebook_crafting.jpg" alt="crafting recipe for notebook page"> Et pour duplique une page écrite, vous pouvez faire comme cela :
+            <img src="media/page_notebook_crafting_dupes.jpg" alt="copying a written address to another page"> Les pages de notes sont comme les maps tenus dans les mains, Les Symboles sont rangés dans l'ordre que vous devez les activer, de la gauche vers la droite, haut en bas,
+            si vous voulez combiner les pages ensembles, vous pouvez activerun Livre de notes ce cette manière :
+            <img src="media/notebook_crafting.jpg" alt="crafting recipe for notebook">
+            <img src="media/notebook_crafting_dupes.jpg" alt="recipes for duplicating notebooks and adding addresses to them">
+        </p>
+        <hr>
+        <a id="powerdraw">
+            <h2>Energie</h2>
+        </a>
+        <hr>
+        <p class="description">
+            La Stargate consomme de l'énergie de deux manières :
+        </p>
+        <ul>
+            <li>
+                Quand la Stargate est ouverte (Coût d'ouverture), consomme uniquement à l'activation.
+            </li>
+            <li>
+                Quand la Stargate reste ouverte (Coût de maintient), consomme tout les ticks. 
+            </li>
+        </ul>
+        <p class="description">
+            La distance est prise en compte. Cette formule est appliquée à la distance calculée à partir de la distance du bloc :
+            <img src="media/power_formula.jpg" alt="power formula code"> Il se réduit donc à l’échelle de puissance</p>
+        <ul>
+            <li>
+                Coût linéaire sous 5000 blocs
+            </li>
+            <li>
+                Coût logarythmique au-dessus de 5000 (augmentation plus lente)
+            </li>
+        </ul>
+        <p class="description">
+            The outcome is this adjusted distance:
+            Le résultat est ajusté par ces distances :
+            <img src="media/power_adjusted_distance.jpg" alt="adjusted distances for power draw"> Le coût de la Stargate augmente avec des distances supérieures à 5 000 blocks. Voici un bref résumé:
+            <img src="media/power_summary.jpg" alt="summer of power profitability above 5000 blocks"> <sup>(Résumé de la consommation d’énergie. Le coût de maintien en vie est calculé pour le temps d’ouverture de 20 secondes. Coût d’ouverture par bloc et coût de maintien en vie par bloc et par tick
+                peut être modifié dans la configuration.)</sup>
+            <br>Cela ne tient toutefois pas compte du décalage de puissance de dimension. Ceci est lu à partir du fichier config/aunis_dimensions.json au chargement du monde. La puissance est calculé par rapport à l'Overworld et peux être changé à tout moment dans le ficher de configuration (Le monde
+            doit être rechargé). Le décalage est par défault à 0, mais certaines valeurs par défaut sont définies. Voici les compensations en millions de RF (coût d'ouverture uniquement):
+            <img src="media/power_dimensions.jpg" alt="dimensions power offsets summary">
+        </p>
+    </div>
+</body>
+
+</html>
