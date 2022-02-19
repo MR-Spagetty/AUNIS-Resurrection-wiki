@@ -58,8 +58,8 @@
         </a>
         <hr>
         <p class="description">
-            <a href="https://www.curseforge.com/minecraft/mc-mods/opencomputers" class="external-link">OpenComputers</a>  est un mod en rapport avec les ordinateurs (obvious). Il ajoute des écrans modulaires de style sophistiqué, des PC, des serveurs et bien plus encore.
-            Le mod est compatible avec ces ordinateurs (comme la version 1.5)  et permet une composition du type SGC.
+            <a href="https://www.curseforge.com/minecraft/mc-mods/opencomputers" class="external-link">OpenComputers</a> est un mod en rapport avec les ordinateurs (obvious). Il ajoute des écrans modulaires de style sophistiqué, des PC, des serveurs et
+            bien plus encore. Le mod est compatible avec ces ordinateurs (comme la version 1.5) et permet une composition du type SGC.
         </p>
         <h3>Programme de composition simple</h3>
         <p class="description">
@@ -103,8 +103,8 @@
                 <code>engageSymbol(symbolName: string or symbolIndex: integer): table</code> Fait tourner l’anneau au symbole donné et l’engage/verrouille.
                 <br>Paramètres:
                 <br><code>symbolName</code> dans le <b>name</b> du <b>symbol</b> pour être encodé.
-                <br><code>symbolIndex</code> dans le <b>index</b> du <b>symbol</b> pour être encodé. regardez <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolMilkyWayEnum.java" class="external-link">Symboles de la Voie lactée</a>,
-                <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolPegasusEnum.java" class="external-link">Symboles de Pégase</a>, <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/AUNIS/stargate/network/SymbolUniverseEnum.java"
+                <br><code>symbolIndex</code> dans le <b>index</b> du <b>symbol</b> pour être encodé. regardez <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolMilkyWayEnum.java" class="external-link">Symboles de la Voie lactée</a>,
+                <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolPegasusEnum.java" class="external-link">Symboles de Pégase</a>, <a href="https://github.com/MineDragonCZ/Aunis1/blob/master/src/main/java/mrjake/aunis/stargate/network/SymbolUniverseEnum.java"
                     class="external-link">Symboles d'Universe</a>.
                 <br>Retourne:
                 <br><code>status</code> Si nil, échec de la commande, sinon <code>"stargate_spin"</code>.
@@ -236,7 +236,7 @@
             </li>
             <br>
             <li>
-                <code>attemptTransportTo(address: integer)</code>  Tente de transporter toutes les entités dans la zone de l’anneau vers l’adresse spécifiée
+                <code>attemptTransportTo(address: integer)</code> Tente de transporter toutes les entités dans la zone de l’anneau vers l’adresse spécifiée
                 <br>Retourne:
                 <br><code>result</code>peut être l'un de ces types : [<code>"OK"</code>, <code>"BUSY"</code>, <code>"BUSY_TARGET"</code>, <code>"OBSTRUCTED"</code>, <code>"OBSTRUCTED_TARGET"</code>, <code>"NO_SUCH_ADDRESS"</code>]
             </li>
@@ -346,7 +346,8 @@
             </li>
             <h3>Signals</h3>
             <p class="description">
-                Certains blocks AUNIS génèrent un signal. La plupart des méthodes visent à être <b>non-blocking</b>, vous aurez donc besoin <b>callbacks</b> pour pouvoir utiliser correctement une Stargate par exemple. Voici la liste des blocs et des signaux qu’ils émettent.
+                Certains blocks AUNIS génèrent un signal. La plupart des méthodes visent à être <b>non-blocking</b>, vous aurez donc besoin <b>callbacks</b> pour pouvoir utiliser correctement une Stargate par exemple. Voici la liste des blocs et des signaux
+                qu’ils émettent.
             </p>
             <h4>Universal Paramètres</h4>
             <p class="description">
@@ -365,7 +366,7 @@
                 </li>
                 <br>
                 <li>
-                    <code>stargate_spin_chevron_engaged(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> émit quand la Stargate a fini d’engager/verrouiller le symbole après avoir réussi la fonction <code>engageSymbol</code> .
+                    <code>stargate_spin_chevron_engaged(address: string, caller: boolean, symbolCount: integer, lock: boolean, symbolName: string)</code> émit quand la Stargate a fini d’engager/verrouiller le symbole après avoir réussi la fonction <code>engageSymbol</code>                    .
                     <br>Paramètres:
                     <br><code>symbolCount</code> le nombre de symboles qui ont été engagés
                     <br><code>lock</code> will be <code>true</code> si le chevron est <b>locking</b>
@@ -383,7 +384,7 @@
                 <li>
                     <code>stargate_incoming_wormhole(address: string, caller: boolean, dialedAddressSize: integer)</code>émit quand la Stargate a été composé à partir d’une autre porte mais n’a pas encore été engagé (c.-à-d. GBR n’a pas appuyé).
                     <br>Paramètres:
-                    <br><code>dialedAddressSize</code> le nombre de symboles que vous avez composés sur le  DHD (ou l’ordinateur).
+                    <br><code>dialedAddressSize</code> le nombre de symboles que vous avez composés sur le DHD (ou l’ordinateur).
                 </li>
                 <br>
                 <li>
@@ -464,8 +465,8 @@
         </a>
         <hr>
         <p class="description">
-            Tinkers construct est un mod qui ajoute une fonderie qui peut être utilisée pour fondre les métaux et les allier ensemble grâce à l’utilisation de cette fonderie (si vous avez l’intégration de bricolages activée dans la configuration), vous pouvez fondre des matériaux AUNIS tels que le trinium et
-            alliage de naquadah et lingots coulés de ces matériaux avec le métal liquide.
+            Tinkers construct est un mod qui ajoute une fonderie qui peut être utilisée pour fondre les métaux et les allier ensemble grâce à l’utilisation de cette fonderie (si vous avez l’intégration de bricolages activée dans la configuration), vous pouvez fondre
+            des matériaux AUNIS tels que le trinium et alliage de naquadah et lingots coulés de ces matériaux avec le métal liquide.
         </p>
     </div>
 </body>
