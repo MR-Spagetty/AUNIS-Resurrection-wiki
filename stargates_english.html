@@ -191,8 +191,40 @@
         </p>
         <hr>
         <a id="power_draw">
-            <h2></h2>
+            <h2>Power Draw</h2>
         </a>
+        <hr>
+        <p class="description">
+            The Stargate consume power in 2 ways:
+        </p>
+        <ul>
+            <li>
+                When the gate is opening (Open cost). Drawn once per open.
+            </li>
+            <li>
+                When the gate stays open (Keep alive cost) Drawn each tick.
+            </li>
+        </ul>
+        <p class="description">
+            Distance is taken into account. This formula gets applied to the distance calculated from block distance:
+            <img src="media/power_formula.jpg" alt="power formula code"> So it narrows down to the power scale</p>
+        <ul>
+            <li>
+                Being linear under 5000 blocks
+            </li>
+            <li>
+                Being logarythmic over 5000 (rises slower)
+            </li>
+        </ul>
+        <p class="description">
+            The outcome is this adjusted distance:
+            <img src="media/power_adjusted_distance.jpg" alt="adjusted distances for power draw"> The profitability of the Stargate rises with distances above 5,000 blocks. Here is a quick summary:
+            <img src="media/power_summary.jpg" alt="summer of power profitability above 5000 blocks"> <sup>(Power consumption summary. Keep alive cost is calculated for the open time of 20 seconds. Open cost per block and keep alive cost per block per tick
+            can be changed in config.)</sup>
+            <br>This does not, however, take into account the dimension power offset. This is read from config/aunis_dimensions.json on world's load. The power is calculated relatively to the Overworld and can be changed in the config file anytime(World
+            should be reloaded). Default offset is 0, but there are some defaults set. Here are the offsets in millions of RF(open cost only):
+            <img src="media/power_dimensions.jpg" alt="dimensions power offsets summary">
+        </p>
     </div>
 </body>
 
